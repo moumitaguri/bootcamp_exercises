@@ -40,4 +40,13 @@ class QuantityTest {
 
         assertEquals(twoInches,fiveCM);
     }
+
+    @Test
+    void shouldCompareOneFeetAndThirtyCMAsEqual() {
+
+        Quantity oneFeet = new Quantity(BigDecimal.ONE, Unit.FEET);
+        Quantity thirtyCM = new Quantity(new BigDecimal(30), Unit.CM);
+
+        assertEquals(oneFeet,thirtyCM);
+    }
 }
