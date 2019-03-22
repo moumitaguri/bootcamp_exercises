@@ -18,7 +18,7 @@ class Quantity {
         if (this == otherQuantity) return true;
         if (otherQuantity == null || getClass() != otherQuantity.getClass()) return false;
         Quantity quantity = (Quantity) otherQuantity;
-
+        if (!this.unit.isOfSameType(quantity.unit)) return false;
         BigDecimal selfBaseValue = this.unit.valueInBaseUnit(this.value);
         BigDecimal otherQuantityBaseValue = quantity.unit.valueInBaseUnit(quantity.value);
 

@@ -55,6 +55,21 @@ class QuantityTest {
         Quantity tenMM = new Quantity(new BigDecimal(10), Unit.MM);
 
         assertEquals(oneCM, tenMM);
+    }
 
+    @Test
+    void shouldCompareOneGallonAndEquivalentLitresAsEqual() {
+        Quantity oneGallon = new Quantity(BigDecimal.ONE, Unit.GALLON);
+        Quantity threePointSevenEightLitres = new Quantity(new BigDecimal(3.78), Unit.LITRE);
+
+        assertEquals(oneGallon,threePointSevenEightLitres);
+    }
+
+    @Test
+    void shouldNotCompareTwoDifferentTypeOfQuantities() {
+        Quantity oneInch = new Quantity(BigDecimal.ONE, Unit.INCH);
+        Quantity oneLitre = new Quantity(BigDecimal.ONE, Unit.LITRE);
+
+        assertNotEquals(oneInch,oneLitre);
     }
 }
