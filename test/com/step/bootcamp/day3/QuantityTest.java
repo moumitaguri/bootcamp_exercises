@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 class QuantityTest {
 
@@ -22,6 +21,23 @@ class QuantityTest {
         Quantity thirteenInches = new Quantity(new BigDecimal(13), Unit.INCH);
         Quantity oneFeet = new Quantity(BigDecimal.ONE, Unit.FEET);
 
-        assertFalse(thirteenInches.equals(oneFeet));
+        assertNotEquals(thirteenInches, oneFeet);
+    }
+
+    @Test
+    void shouldCompareOneCmToEquivalentInches() {
+        Quantity pointFourInch = new Quantity(new BigDecimal(0.4), Unit.INCH);
+        Quantity oneCM = new Quantity(BigDecimal.ONE, Unit.CM);
+
+        assertEquals(oneCM,pointFourInch);
+    }
+
+    @Test
+    void shouldCompareTwoInchesAndFiveCm() {
+
+        Quantity twoInches = new Quantity(new BigDecimal(2), Unit.INCH);
+        Quantity fiveCM = new Quantity(new BigDecimal(5), Unit.CM);
+
+        assertEquals(twoInches,fiveCM);
     }
 }
