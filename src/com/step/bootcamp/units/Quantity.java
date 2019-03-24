@@ -1,4 +1,4 @@
-package com.step.bootcamp.day3;
+package com.step.bootcamp.units;
 
 import java.math.BigDecimal;
 

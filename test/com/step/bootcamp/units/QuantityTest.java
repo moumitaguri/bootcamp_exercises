@@ -1,4 +1,4 @@
-package com.step.bootcamp.day3;
+package com.step.bootcamp.units;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ class QuantityTest {
     }
 
     @Test
-    void shouldNotCompareTwoDifferentQuantities() {
+    void shouldNotCompateTwoUnequivalentQuantitiesofSameType() {
         Quantity thirteenInches = new Quantity(new BigDecimal(13), Unit.INCH);
         Quantity oneFeet = new Quantity(BigDecimal.ONE, Unit.FEET);
 
@@ -34,7 +34,7 @@ class QuantityTest {
     }
 
     @Test
-    void shouldCompareTwoInchesAndFiveCm() {
+    void shouldCompareTwoInchesAndFiveCmAsEqual() {
         Quantity twoInches = new Quantity(new BigDecimal(2), Unit.INCH);
         Quantity fiveCM = new Quantity(new BigDecimal(5), Unit.CM);
 
