@@ -6,10 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static java.util.Arrays.asList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class MatrixTest {
+class MatrixTest {
     private ArrayList<ArrayList<Integer>> elementsOfMatrix1;
     private ArrayList<ArrayList<Integer>> elementsOfMatrix2;
 
@@ -47,7 +46,7 @@ public class MatrixTest {
 
         Matrix matrix = new Matrix(elementsOfMatrix);
         Matrix matrix1 = new Matrix(elementsOfMatrix1);
-        assertEquals(matrix,matrix1);
+        assertEquals(matrix, matrix1);
 
     }
 
@@ -67,7 +66,7 @@ public class MatrixTest {
     }
 
     @Test
-    void shouldAddTwoMatrices() {
+    void shouldPerformAdditionOfTwoMatrices() {
         Matrix matrix1 = new Matrix(elementsOfMatrix1);
         Matrix matrix2 = new Matrix(elementsOfMatrix2);
 
@@ -79,5 +78,35 @@ public class MatrixTest {
         Matrix resultedMatrix = new Matrix(elementsOfResultedMatrix);
 
         assertEquals(resultedMatrix, matrix1.add(matrix2));
+    }
+
+    @Test
+    void shouldPerformMultiplicationOfTwoMatrices() {
+
+        Matrix matrix1 = new Matrix(elementsOfMatrix1);
+        Matrix matrix2 = new Matrix(elementsOfMatrix2);
+
+        ArrayList<ArrayList<Integer>> elementsOfResultedMatrix = new ArrayList<>();
+        elementsOfResultedMatrix.add(new ArrayList<>(asList(1, 0, 0)));
+        elementsOfResultedMatrix.add(new ArrayList<>(asList(0, 2, 0)));
+        elementsOfResultedMatrix.add(new ArrayList<>(asList(0, 0, 3)));
+
+        Matrix resultedMatrix = new Matrix(elementsOfResultedMatrix);
+
+        assertEquals(resultedMatrix, matrix1.multiply(matrix2));
+    }
+
+    @Test
+    void shouldThrowInvalidMatrixToMultiplyException() {
+        Matrix matrix1 = new Matrix(elementsOfMatrix1);
+
+
+        ArrayList<ArrayList<Integer>> elementsOfMatrix2 = new ArrayList<>();
+        elementsOfMatrix2.add(new ArrayList<>(asList(1, 0)));
+        elementsOfMatrix2.add(new ArrayList<>(asList(0, 2)));
+
+        Matrix matrix2 = new Matrix(elementsOfMatrix2);
+
+        assertThrows(InvalidMatrixToMultiplyException.class, () -> matrix1.multiply(matrix2));
     }
 }

@@ -11,7 +11,7 @@ class Matrix {
         this.matrix = matrix;
     }
 
-    ArrayList<ArrayList<Integer>> create() {
+    private ArrayList<ArrayList<Integer>> create() {
         ArrayList<ArrayList<Integer>> elements = new ArrayList<>();
         for (int index = 0; index < this.matrix.size(); index++) {
             elements.add(new ArrayList<>());
@@ -51,6 +51,25 @@ class Matrix {
         return new Matrix(resultMatrix);
     }
 
+
+    private boolean isValidForMultiplication(Matrix otherMatrix) {
+        return this.matrix.get(0).size() == otherMatrix.matrix.size();
+    }
+
+    Matrix multiply(Matrix otherMatrix) {
+        if (!isValidForMultiplication(otherMatrix)) throw new InvalidMatrixToMultiplyException();
+        ArrayList<ArrayList<Integer>> resultMatrix = create();
+        for (int rowIndex = 0; rowIndex < this.matrix.size(); rowIndex++) {
+            ArrayList<Integer> rowOf1st = this.matrix.get(rowIndex);
+            for (int index = 0; index < otherMatrix.matrix.get(0).size(); index++) {
+                int product = rowOf1st.get(index) * otherMatrix.matrix.get(index).get(rowIndex);
+                resultMatrix.get(rowIndex).add(product);
+            }
+        }
+        return new Matrix(resultMatrix);
+
+    }
+
     @Override
     public boolean equals(Object otherMatrix) {
         if (this == otherMatrix) return true;
@@ -63,7 +82,6 @@ class Matrix {
     public int hashCode() {
         return Objects.hash(matrix);
     }
-
 
 }
 
